@@ -1,0 +1,44 @@
+---
+const { id, title, category } = Astro.props;
+---
+
+<div
+  class="h-40 bg-secondary flex flex-row items-center justify-between border-2 border-l-0 border-r-0"
+  id="category_header"
+>
+  <div class="w-3/5 h-full relative z-0">
+    <div class="h-full w-full absolute z-50 overflow-hidden" id="category_image">
+      <!-- <Image 
+        src={categoryImage} 
+        alt="Cabecera de Categoria" 
+        class="h-full w-full object-cover"
+        loading="eager"
+      /> -->
+    </div>
+    <div
+      class="bg-complementary h-full w-full absolute left-2 z-40"
+      id="first-border"
+    >
+    </div>
+    <div
+      class="bg-accent h-full w-full absolute left-4 z-30"
+      id="second-border"
+    >
+    </div>
+  </div>
+  <div class="text-6xl text-right mr-5" id="category_title">
+    <p>
+      <span class="uppercase font-extrabold">
+        <span class="text-accent">{id}.</span> {title}</span
+      >
+    </p>
+  </div>
+</div>
+
+<style>
+  #category_image,
+  #first-border,
+  #second-border {
+    clip-path: polygon(0 0, 100% 0%, 93% 100%, 0% 100%);
+  }
+</style>

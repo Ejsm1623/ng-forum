@@ -1,0 +1,29 @@
+---
+const { title, subTitle, acces1, acces2, forumUrl, forum } = Astro.props;
+---
+
+<div class="h-full relative flex flex-col space-y-2">
+  <div class="h-full w-full bg-complementary p-2 overflow-hidden">
+    <a href={`${forumUrl}`}>
+      <!-- <Image src={forumImage} alt="Portada de Foro Principal" loading="eager" /> -->
+    </a>
+  </div>
+
+  <!-- Titulo del Foro sobreposicionado -->
+  <div
+    class="absolute w-full bottom-14 flex flex-col items-center py-1 pb-3 bg-primary bg-opacity-80"
+  >
+    <span class="uppercase text-text font-bold text-5xl">{title}</span>
+    <span class="block px-5 bg-accent text-sm">{subTitle}</span>
+  </div>
+
+  <!-- Accesos Directos a Sub-Foros -->
+  <div class="flex flex-row justify-between space-x-2 font-bold text-primary">
+    <span class="block bg-complementary w-full p-1 text-center rounded-sm"
+      >{acces1}</span
+    >
+    <span class="block bg-complementary w-full p-1 text-center rounded-sm"
+      >{acces2}</span
+    >
+  </div>
+</div>

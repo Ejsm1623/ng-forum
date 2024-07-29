@@ -1,0 +1,181 @@
+---
+import TabButton from "./Tab.astro";
+import WorldContent from "./Content.astro";
+---
+
+<div class="bg-primary p-6">
+  <div class="border-2 h-full">
+    <div class="h-14 flex flex-row text-white text-xl" id="world-menu">
+      <!-- Componente: Pestaña de Konoha -->
+      <TabButton
+        dataId="Konoha"
+        text="火"
+        secondaryText="País del Fuego"
+        tabColor="bg-konoha"
+        status="active-tab"
+      />
+      <!-- Componente: Pestaña de Kiri -->
+      <TabButton
+        dataId="Kiri"
+        text="水"
+        secondaryText="País del Agua"
+        tabColor="bg-kiri"
+        status="inactive-tab"
+      />
+      <!-- Componente: Pestaña de Suna -->
+      <TabButton
+        dataId="Suna"
+        text="風"
+        tabColor="bg-suna"
+        status="inactive-tab"
+      />
+      <!-- Componente: Pestaña de Iwa -->
+      <TabButton
+        dataId="Iwa"
+        text="土"
+        tabColor="bg-iwa"
+        status="inactive-tab"
+      />
+      <!-- Componente: Pestaña de Kumo -->
+      <TabButton
+        dataId="Kumo"
+        text="雷"
+        tabColor="bg-kumo"
+        status="inactive-tab"
+      />
+      <!-- Componente: Pestaña de Resto del Mundo -->
+      <TabButton
+        dataId="RMundo"
+        text="世"
+        tabColor="bg-secondary"
+        status="inactive-tab"
+      />
+    </div>
+    <!-- Contenido para Konoha -->
+    <WorldContent
+      primaryText="Campos & Valles."
+      secondaryText="País del Fuego"
+      description="El País del Fuego se caracteriza por sus suaves colinas y abundante cosecha. Con una extensa población y una ubicación central en el continente, ha logrado prosperar mediante el comercio con diversas naciones. Esta interacción cultural ha enriquecido su sociedad, manteniendo una economía."
+      village="Konohagakure"
+      id="Konoha"
+      image="/p-konoha.png"
+      activeClass="active"
+      tabColor="bg-konoha"
+    />
+    <!-- Contenido para Kiri -->
+    <WorldContent
+      primaryText="Mares & Tormentas"
+      secondaryText="País del Agua"
+      description="El País del Agua es famoso por sus vastos cuerpos de agua y su clima constantemente húmedo. Con una geografía que combina ambientes marinos y montañosos, ha desarrollado una rica cultura marítima. Su economía se centra en la pesca y el comercio marítimo."
+      village="Kirigakure"
+      id="Kiri"
+      image="/p-kiri.png"
+      tabColor="bg-kiri"
+    />
+
+    <!-- Contenido para Suna -->
+    <WorldContent
+      primaryText="Grandes Desiertos."
+      secondaryText="País del Viento"
+      description="El País del Viento es una región árida y desértica, conocida por sus vastas dunas y tormentas de arena. Su economía se basa en el comercio de especias y minerales, y su cultura refleja la adaptabilidad y fortaleza necesarias para prosperar en un entorno hostil."
+      threadCount="3"
+      postCount="5"
+      id="Suna"
+      image="/p-suna.png"
+      village="Sunagakure"
+      tabColor="bg-suna"
+    />
+
+    <!-- Contenido para Iwa -->
+    <WorldContent
+      primaryText="Montañas & Cuevas"
+      secondaryText="País de la Tierra"
+      description="La mitad de este país es un páramo cubierto de rocas. Montañas elevadas y rocosas forman una frontera natural, cortándola de la comunicación con otros países. El viento del norte barre a través de estas empinadas montañas, creando una lluvia de piedra sobre los países al sur."
+      threadCount="3"
+      postCount="5"
+      id="Iwa"
+      image="/p-iwa.png"
+      village="Iwagakure"
+      tabColor="bg-iwa"
+    />
+
+    <!-- Contenido para Kumo -->
+    <WorldContent
+      primaryText="Rayos & Tempestad."
+      secondaryText="Kumogakure"
+      description="Sunagakure, la Aldea Oculta de la Arena, destaca en el País del Viento por su dominio del jutsu de arena. Reconocida por su resistencia y estrategia militar, su liderazgo por el Kazekage asegura su posición como una fuerza ninja formidable en el universo de Naruto."
+      id="Kumo"
+      image="/p-kumo.png"
+      village="Kumogakure"
+      tabColor="bg-kumo"
+    />
+
+    <!-- Contenido para Resto del Mundo -->
+    <WorldContent
+      primaryText="Países Menores"
+      secondaryText="Resto del Mundo"
+      description="No te limites a lo que ya conoces; sal y explora el resto del continente. Hay vastas regiones aún inexploradas que podrían ofrecerte sorpresas fascinantes. Cada rincón tiene su propia historia y sus secretos esperando ser descubiertos. Quizá encuentres algo que capte tu atención, te inspire o incluso cambie tu perspectiva. "
+      threadCount="3"
+      postCount="5"
+      id="RMundo"
+      image="/p-ame.png"
+      village="Aldeas Menores"
+      tabColor="bg-primary"
+    />
+  </div>
+</div>
+
+<style is:global>
+  [data-content] {
+    display: none;
+    transition: ease 900ms;
+  }
+
+  .active[data-content] {
+    display: flex;
+  }
+
+  .inactive-tab {
+    opacity: 0.5;
+  }
+
+  .inactive-tab:hover {
+    opacity: 1;
+    transition: ease 900ms;
+  }
+
+  .active-tab {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  const content = document.querySelectorAll("[data-content]");
+  const targets = document.querySelectorAll("[data-target]");
+
+  targets.forEach((target) => {
+    target.addEventListener("click", () => {
+      // Desactivar la clase active para el resto de Tabs o la Tab Inicial
+      content.forEach((c) => {
+        c.classList.remove("active");
+      });
+
+      targets.forEach((tab) => {
+        tab.classList.remove("active-tab");
+        tab.classList.add("inactive-tab");
+      });
+
+      //Activar el contenido correspondiente al Tab
+      const activeContent = document.querySelector(
+        `#${target.getAttribute("data-target")}`
+      );
+      if (activeContent) {
+        activeContent.classList.add("active");
+      }
+
+      //Activar la Tab Correspondiente
+      target.classList.add("active-tab");
+      target.classList.remove("inactive-tab");
+    });
+  });
+</script>

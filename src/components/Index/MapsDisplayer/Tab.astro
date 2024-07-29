@@ -1,0 +1,10 @@
+---
+const { dataId, text, tabColor, status } = Astro.props;
+---
+
+<button
+  data-target={dataId}
+  class={`h-full w-1/5 flex justify-center items-start px-3 leading-5 flex-col tab ${tabColor} ${status}`}
+>
+  <span class="font-medium text-3xl text-center w-full">{text}</span>
+</button>

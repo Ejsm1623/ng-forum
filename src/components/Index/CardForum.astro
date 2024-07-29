@@ -1,0 +1,31 @@
+---
+const { title, quickAcces1, quickAcces2, forum } = Astro.props;
+---
+
+<div class="w-2/6 h-[400px] flex flex-col">
+  <div class="h-1/2 w-full bg-slate-200">
+    <!-- <Image src={forumImage} alt="" /> -->
+  </div>
+  <div class="bg-black p-2 flex flex-col justify-start space-y-2 h-full">
+    <!-- Titulo -->
+    <div>
+      <span class="text-text text-2xl">{title}</span>
+      <hr />
+    </div>
+    <!-- Accesos Rapidos -->
+    <div class="flex flex-row justify-end space-x-2 text-base text-primary font-semibold">
+      <span class="w-full bg-complementary text-center border-l-4 border-accent "
+        >{quickAcces1}</span
+      >
+      <span class="w-full bg-complementary text-center border-l-4 border-accent"
+        >{quickAcces2}</span
+      >
+    </div>
+    <!-- Descripción -->
+    <div class="bg-tertiary text-base h-full p-2 text-justify">
+      Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry.Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry.
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+---
+const links = [
+  {
+    title: "Inicio",
+    url: "",
+  },
+  {
+    title: "Fichas",
+    url: "character-profile",
+  },
+  {
+    title: "Guías",
+    url: "guide-index",
+  },
+  {
+    title: "Usuario",
+    url: "user-panel",
+  },
+  {
+    title: "Entrenamiento",
+    url: "training",
+  },
+  {
+    title: "Técnicas",
+    url: "techniques-catalog",
+  },
+];
+
+const { id } = Astro.params;
+---
+
+<nav id="nav">
+  <div
+    class="bg-secondary h-14 flex flex-row justify-center uppercase items-center text-lg font-bold text-white"
+  >
+    {
+      links.map((link) => (
+        <a
+          href={`/${link.url}`}
+          class="nav-link px-9 py-1 hover:bg-accent hover:text-white flex justify-center items-center h-full transition duration-200 ease-in-out hover:scale-110"
+          data-target={link.url}
+        >
+          {link.title}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+</style>

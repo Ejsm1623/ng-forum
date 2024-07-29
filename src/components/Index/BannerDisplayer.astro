@@ -1,0 +1,35 @@
+---
+import Image from "astro/components/Image.astro";
+import BannerImage from "/public/sample-banner.png";
+---
+
+<!-- Contenedor Padre de Banner -->
+<div class="relative h-[500px] overflow-hidden" id="bannerBox">
+  <!-- Imagen -->
+  <a href="/">
+    <Image
+      src={BannerImage}
+      alt="Banner Principal del Foro"
+      loading="eager"
+    /></a
+  >
+  <!-- Accesos Rapidos -->
+  <div
+    class="bg-accent w-1/2 h-11 absolute bottom-0 left-1/4 flex flex-row rounded-lg rounded-b-none"
+  >
+    <ul class="flex h-full w-full flex-row justify-evenly items-center">
+      <li>Cerrar sesión</li>
+      <li>Petición Administrativa</li>
+      <li>Top Rolers</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  #bannerBox {
+    border: 5px solid;
+    border-left: none;
+    border-right: none;
+    border-color: #eb5e28;
+  }
+</style>

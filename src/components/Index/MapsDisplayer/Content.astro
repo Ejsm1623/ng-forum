@@ -1,0 +1,52 @@
+---
+const {
+  primaryText,
+  secondaryText,
+  description,
+  village,
+  image,
+  id,
+  activeClass,
+  tabColor,
+} = Astro.props;
+---
+
+<!-- Contenedor Padre -->
+<div
+  class={`h-96 flex flex-row text-text tab-content ${activeClass}`}
+  id={id}
+  data-content
+>
+  <!-- Sección Izquierda: Descripción -->
+  <div
+    class="bg-secondary w-2/5 h-full flex flex-col justify-between p-4 space-y-4"
+  >
+    <!-- Titulo & Sub-Titulo -->
+    <div class="">
+      <span class="text-xl">{primaryText}</span><br />
+      <span class="uppercase text-4xl font-bold">{secondaryText}</span>
+    </div>
+    <!-- Contenido de la Descripción -->
+    <div class="h-full flex flex-col justify-center space-y-3">
+      <hr />
+      <p class="block text-justify h-full bg-slate">
+        {description}
+      </p>
+    </div>
+    <!-- Tabs de Accesos -->
+    <div class="flex flex-row justify-around text-black space-x-2">
+      <a href="" class="w-full">
+        <span class="block bg-white text-center rounded-lg">Lugares</span>
+      </a>
+      <a href="" class="w-full">
+        <span class={`block ${tabColor} text-center text-text rounded-lg`}
+          >{village}</span
+        ></a
+      >
+    </div>
+  </div>
+  <!-- Contenedor de para Imagen -->
+  <div class="h-96 w-full overflow-hidden">
+    <img src={image} alt="Banner de Aldea" class="h-full" />
+  </div>
+</div>

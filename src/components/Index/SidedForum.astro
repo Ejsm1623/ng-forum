@@ -1,0 +1,21 @@
+---
+const { title, description } = Astro.props;
+---
+
+<!-- Componente: Foro Horizontal -->
+<div class="flex flex-row h-36 border-l-4 border-accent">
+  <!-- Sección: Titulo & Estadisticas del Foro -->
+  <div class="w-1/2 bg-primary flex justify-center items-center text-center">
+    <p class="text-3xl uppercase leading-5">
+      {title}
+      <br />
+      <span class="text-sm font-extralight">3 Temas & 10 Mensajes</span>
+    </p>
+  </div>
+  <!-- Descripción: Contenido del Foro -->
+  <div class="w-1/2 bg-complementary p-3 text-primary">
+    <p class="text-sm font-medium text-justify">
+      {description}
+    </p>
+  </div>
+</div>
