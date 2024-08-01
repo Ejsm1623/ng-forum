@@ -1,7 +1,7 @@
 ---
 import CardForum from "../components/Index/CardForum.astro";
 import Category from "../components/Index/Category.astro";
-import WorldForums from "../components/Index/MapsDisplayer/WorldForums.astro";
+import WorldForums from "../components/Index/WorldForum/WorldForum.astro";
 import SidedForum from "../components/Index/SidedForum.astro";
 import SquaredForum from "../components/Index/SquaredForum.astro";
 import Layout from "../layouts/Layout.astro";
@@ -14,90 +14,110 @@ import Layout from "../layouts/Layout.astro";
       <!-- Categoria 1: Información -->
       <Category id="01" title="Información" category="information" />
       <!-- Contenedor Padre -->
-<div class="bg-primary p-3 w-full h-[400px]">
-	<!-- Contenedor para aplicar fondo -->
-	<div class="bg-secondary p-3 flex flex-row space-x-3 h-full">
-	  <!-- Componente: Foro Principal -->
-	  <div class="w-3/5">
-		<SquaredForum
-		  title="Anuncios"
-		  subTitle="Mantente al día con las últimas novedades del foro."
-		  acces1="Actualizaciones"
-		  acces2="Eventos"
-		  forumUrl="/forums/1/guias-e-informacion"
-		  forum="announcement"
-		/>
-	  </div>
-	  <!-- Foros Secundarios -->
-	  <div class="flex flex-col space-y-3 justify-between">
-		<SidedForum
-		  title="Ambientación"
-		  description="¡Bienvenido! Lee las últimas novedades en cuanto a ambientación y Lore. Ubicate en la historia y conoce los detalles antes de comenzar."
-		/>
-		<SidedForum
-		  title="Soporte"
-		  description="Planteas las dudas, sugerencias o quejas que mantengas. La administración o incluso la comunidad, respodnerá cuanto antes a ellas."
-		/>
-		<SidedForum title="Bienvenidas" description="¿Ya has leído todo? Dejanos tu mensaje de bienvenida y te daremos una calurosa bienvenida." />
-	  </div>
-	  <!-- Imagen Decorativa de la Sección -->
-	  <!-- <Image
+      <div class="bg-primary p-3 w-full h-[400px]">
+        <!-- Contenedor para aplicar fondo -->
+        <div class="bg-secondary p-3 flex flex-row space-x-3 h-full">
+          <!-- Componente: Foro Principal -->
+          <div class="w-3/5">
+            <SquaredForum
+              title="Guías de Sistema"
+              subTitle="Recorre las guías del foro. Desde lo más básico a las avanzadas."
+              acces1="Guías Bélicas"
+              acces2="Otras Guías"
+              forumUrl="/forum/4/guias-&-sistemas"
+              forumImage={"/forums/guides.png"}
+            />
+          </div>
+          <!-- Foros Secundarios -->
+          <div class="flex flex-col space-y-3 justify-between">
+            <SidedForum
+              title="Ambientación"
+              description="¡Bienvenido! Lee las últimas novedades en cuanto a ambientación y Lore. Ubicate en la historia y conoce los detalles antes de comenzar."
+            />
+            <SidedForum
+              title="Soporte"
+              description="Planteas las dudas, sugerencias o quejas que mantengas. La administración o incluso la comunidad, respodnerá cuanto antes a ellas."
+            />
+            <SidedForum
+              title="Anuncios & Eventos"
+              description="Mantente al día con las últimas novedades del foro."
+            />
+          </div>
+          <!-- Imagen Decorativa de la Sección -->
+          <!-- <Image
 		src={sampleImage}
 		alt="Imagen Decorativa"
 		class="w-1/5"
 		loading="lazy"
 	  /> -->
-	</div>
-  </div>
+        </div>
+      </div>
     </section>
     <section>
       <!-- Categoria 2: Personaje -->
       <Category id="02" title="Zona de PJ" category="character" />
-	  <div class="bg-primary p-3 w-full h-[400px]">
-		<div class="bg-secondary p-3 flex flex-row space-x-3 h-full">
-		  <div class="w-2/5">
-			<SquaredForum
-			  title="Creaciones"
-			  subTitle="Todo lo necesario en cuanto a las habilidades de tu personaje."
-			  acces1="Catalogo de Técnicas"
-			  acces2="Armas"
-			  forum="requests"
-			  id={1}
-			  slug=""
-			/>
-		  </div>
-		  <div class="w-1/5 flex flex-col space-y-3">
-			<div
-			  class="w-full bg-accent h-full px-3 flex flex-col justify-evenly text-primary rounded-sm"
-			>
-			<span class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary">
-				<a href="/#"></a>
-			  </span>
-			</div>
-		  </div>
-		  <div class="w-2/5">
-			<SquaredForum
-			  title="Registros"
-			  subTitle="¿Buscando acción? Solicita, Crea o unete a una misión."
-			  forum="creations"
-			  acces1="Tablón de Misiones"
-			  acces2="Solicitud"
-			  id={1}
-			  slug=""
-			/>
-		  </div>
-		</div>
-	  </div>    </section>
+      <div class="bg-primary p-3 w-full h-[400px]">
+        <div class="bg-secondary p-3 flex flex-row space-x-3 h-full">
+          <div class="w-2/5">
+            <SquaredForum
+              title="Creaciones"
+              subTitle="Todo lo necesario en cuanto a las habilidades de tu personaje."
+              acces1="Catalogo de Técnicas"
+              acces2="Armas"
+              forumImage={"/forums/creations.png"}
+              forumUrl="/forum/2/perfiles-de-creaciones"
+            />
+          </div>
+          <div class="w-1/5 flex flex-col space-y-3">
+            <div
+              class="w-full bg-accent h-full px-3 flex flex-col justify-evenly text-primary rounded-sm"
+            >
+              <span
+                class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary"
+              >
+                <a href="/#"></a>
+              </span>
+            </div>
+          </div>
+          <div class="w-2/5">
+            <SquaredForum
+              title="Registros"
+              subTitle="¿Buscando acción? Solicita, Crea o unete a una misión."
+              forumUrl="/forum/3/registros-&-solicitudes"
+              acces1="Tablón de Misiones"
+              acces2="Solicitud"
+              forumImage={"/forum/requests.png"}
+              />
+          </div>
+        </div>
+      </div>
+    </section>
     <section>
       <!-- Categoria 3: Desarrollo -->
       <Category id="03" title="Desarrollo" category="development" />
-	  <div class="bg-primary p-3">
-		<div class="bg-secondary p-3 flex flex-row space-x-3">
-		  <CardForum title="Biblioteca de Información" quickAcces1="Tutoriales" quickAcces2="Técnicas" forum="library"/>
-		  <CardForum title="Comercio" quickAcces1="Tienda" quickAcces2="Banco Internacional" forum="commerce" />
-		  <CardForum title="Mapa del Mundo" quickAcces1="Mejoras de Aldea" quickAcces2="Bestiario" forum="map" />
-		</div>
-	  </div>    </section>
+      <div class="bg-primary p-3">
+        <div class="bg-secondary p-3 flex flex-row space-x-3">
+          <CardForum
+            title="Biblioteca de Información"
+            quickAcces1="Tutoriales"
+            quickAcces2="Técnicas"
+            forum="library"
+          />
+          <CardForum
+            title="Comercio"
+            quickAcces1="Tienda"
+            quickAcces2="Banco Internacional"
+            forum="commerce"
+          />
+          <CardForum
+            title="Mapa del Mundo"
+            quickAcces1="Mejoras de Aldea"
+            quickAcces2="Bestiario"
+            forum="map"
+          />
+        </div>
+      </div>
+    </section>
     <section>
       <!-- Sección de Mundo -->
       <Category id="04" title="Continente" category="world" />
@@ -108,132 +128,135 @@ import Layout from "../layouts/Layout.astro";
       <OffRolZone />
     </section> -->
     <section>
-
-		<div class="bg-primary p-3">
-			<div class="bg-tertiary p-3 flex flex-col space-y-3">
-			  <div class="h-80 w-full flex flex-row space-x-3">
-				<!-- Estadisticas: Conectados -->
-				<div class="flex flex-col w-full">
-				  <div class="flex flex-row justify-center items-center space-x-3">
-					<span class="uppercase text-4xl text-text font-semibold"
-					  >Estadisticas</span
-					>
-					<hr class="w-full border-2 border-accent" />
-				  </div>
-				  <div class="h-full bg-primary text-primary p-4 text-lg">
-					<p class="text-text">Freeia, Hark, Nakai, Kyoshiro,</p>
-				  </div>
-				  <div
-					class="h-1/6 bg-accent text-center flex justify-center items-center"
-				  >
-					<span class="font-bold uppercase">¡Conectados ahora mismo!</span>
-				  </div>
-				</div>
-				<!-- Últimos Conectados -->
-				<div class="w-full space-y-3 overflow-hidden">
-				  <div class="h-1/2 flex flex-col">
-					<span class="block bg-accent p-2 text-center font-bold uppercase"
-					  >Últimos conectados en las 48 horas</span
-					>
-					<div class="bg-primary h-full p-4">Hola</div>
-				  </div>
-				  <div class="h-1/2 overflow-hidden bg-black">
-					<!-- <Image
+      <div class="bg-primary p-3">
+        <div class="bg-tertiary p-3 flex flex-col space-y-3">
+          <div class="h-80 w-full flex flex-row space-x-3">
+            <!-- Estadisticas: Conectados -->
+            <div class="flex flex-col w-full">
+              <div class="flex flex-row justify-center items-center space-x-3">
+                <span class="uppercase text-4xl text-text font-semibold"
+                  >Estadisticas</span
+                >
+                <hr class="w-full border-2 border-accent" />
+              </div>
+              <div class="h-full bg-primary text-primary p-4 text-lg">
+                <p class="text-text">Freeia, Hark, Nakai, Kyoshiro,</p>
+              </div>
+              <div
+                class="h-1/6 bg-accent text-center flex justify-center items-center"
+              >
+                <span class="font-bold uppercase">¡Conectados ahora mismo!</span
+                >
+              </div>
+            </div>
+            <!-- Últimos Conectados -->
+            <div class="w-full space-y-3 overflow-hidden">
+              <div class="h-1/2 flex flex-col">
+                <span
+                  class="block bg-accent p-2 text-center font-bold uppercase"
+                  >Últimos conectados en las 48 horas</span
+                >
+                <div class="bg-primary h-full p-4">Hola</div>
+              </div>
+              <div class="h-1/2 overflow-hidden bg-black">
+                <!-- <Image
 					  src={sampleImage}
 					  alt={"Decorativa de Conectados"}
 					  loading={"lazy"}
 					/> -->
-				  </div>
-				</div>
-			  </div>
-			  <!-- Grupos del Foro -->
-			  <div class="flex flex-row h-full space-x-3">
-				<div
-				  class="w-full h-24 rounded-md bg-konoha text-5xl font-normal flex justify-center items-center"
-				>
-				</div>
-				<div class="w-full h-24 rounded-md bg-kiri"></div>
-				<div class="w-full h-24 rounded-md bg-suna"></div>
-				<div class="w-full h-24 rounded-md bg-iwa"></div>
-				<div class="w-full h-24 bg-kumo"></div>
-				<div class="w-full h-24 bg-kumo"></div>
-				<div class="w-full h-24 bg-kumo"></div>
-				<div class="w-full h-24 bg-kumo"></div>
-				<div class="w-full h-24 bg-kumo"></div>
-			  </div>
-			  <div class="flex flex-row space-x-3">
-				<span class="block bg-primary text-center w-full rounded-md p-3"
-				  >100 Mensajes</span
-				>
-				<span class="block bg-primary text-center w-full rounded-md p-3"
-				  >100 Mensajes</span
-				>
-				<span class="block bg-primary text-center w-full rounded-md p-3"
-				  >100 Mensajes</span
-				>
-			  </div>
-			</div>
-		  </div>
-			  </section>
+              </div>
+            </div>
+          </div>
+          <!-- Grupos del Foro -->
+          <div class="flex flex-row h-full space-x-3">
+            <div
+              class="w-full h-24 rounded-md bg-konoha text-5xl font-normal flex justify-center items-center"
+            >
+            </div>
+            <div class="w-full h-24 rounded-md bg-kiri"></div>
+            <div class="w-full h-24 rounded-md bg-suna"></div>
+            <div class="w-full h-24 rounded-md bg-iwa"></div>
+            <div class="w-full h-24 bg-kumo"></div>
+            <div class="w-full h-24 bg-kumo"></div>
+            <div class="w-full h-24 bg-kumo"></div>
+            <div class="w-full h-24 bg-kumo"></div>
+            <div class="w-full h-24 bg-kumo"></div>
+          </div>
+          <div class="flex flex-row space-x-3">
+            <span class="block bg-primary text-center w-full rounded-md p-3"
+              >100 Mensajes</span
+            >
+            <span class="block bg-primary text-center w-full rounded-md p-3"
+              >100 Mensajes</span
+            >
+            <span class="block bg-primary text-center w-full rounded-md p-3"
+              >100 Mensajes</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
     <footer>
-		<div class="bg-primary p-3">
-			<div class="bg-tertiary p-3 flex flex-row space-x-3">
-			  <!-- Afiliados -->
-			  <div class="w-3/4 flex flex-col space-y-3">
-				<div class="flex flex-row space-x-3 w-full">
-				  <!-- Afiliados Menores -->
-				  <div class="flex flex-row justify-between flex-wrap gap-1 h-full w-3/5">
-					<!-- Primera Fila de Afiliados -->
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<!-- Segunda Fila de Afiliados -->
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<!-- Tercera Fila de Afiliados -->
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<!-- Cuarta Fila de Afiliados -->
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-					<div class="w-14 h-14 bg-black"></div>
-				  </div>
-				  <!-- Afiliados Principales -->
-				  <div class="w-2/5 space-y-3">
-					<div class="h-32 w-full bg-primary"></div>
-					<div class="h-32 w-full bg-primary"></div>
-				  </div>
-				</div>
-				<!-- Titulo -->
-				<div class="bg-accent p-2 flex flex-row justify-between text-lg">
-				  <span>Afiliaciones</span>
-				  <span>0/36 Afiliados</span>
-				</div>
-			  </div>
-			  <!-- Créditos -->
-			  <div class="w-3/12 bg-primary flex flex-col">
-				<span class="w-full block bg-accent text-center p-2">Créditos</span>
-			  </div>
-			</div>
-		  </div>
-			  </footer>
+      <div class="bg-primary p-3">
+        <div class="bg-tertiary p-3 flex flex-row space-x-3">
+          <!-- Afiliados -->
+          <div class="w-3/4 flex flex-col space-y-3">
+            <div class="flex flex-row space-x-3 w-full">
+              <!-- Afiliados Menores -->
+              <div
+                class="flex flex-row justify-between flex-wrap gap-1 h-full w-3/5"
+              >
+                <!-- Primera Fila de Afiliados -->
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <!-- Segunda Fila de Afiliados -->
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <!-- Tercera Fila de Afiliados -->
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <!-- Cuarta Fila de Afiliados -->
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+                <div class="w-14 h-14 bg-black"></div>
+              </div>
+              <!-- Afiliados Principales -->
+              <div class="w-2/5 space-y-3">
+                <div class="h-32 w-full bg-primary"></div>
+                <div class="h-32 w-full bg-primary"></div>
+              </div>
+            </div>
+            <!-- Titulo -->
+            <div class="bg-accent p-2 flex flex-row justify-between text-lg">
+              <span>Afiliaciones</span>
+              <span>0/36 Afiliados</span>
+            </div>
+          </div>
+          <!-- Créditos -->
+          <div class="w-3/12 bg-primary flex flex-col">
+            <span class="w-full block bg-accent text-center p-2">Créditos</span>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
 </Layout>

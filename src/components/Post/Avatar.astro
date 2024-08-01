@@ -1,0 +1,13 @@
+---
+const {userAvatar, userName} = Astro.props;
+---
+
+<div class="rounded-lg h-[450px]">
+  <div id="user-avatar" class="w-[300px] h-[450px]">
+    <img
+      src={userAvatar ?? "/Preset-Avatar.png"}
+      alt={`Avatar de ${userName}`}
+      class="rounded-md w-full h-full object-cover"
+    />
+  </div>
+</div>

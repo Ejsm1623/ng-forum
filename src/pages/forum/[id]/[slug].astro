@@ -1,0 +1,188 @@
+---
+import Pagination from "../../../components/Pagination.astro";
+import StandardBtn from "../../../components/StandardBtn.astro";
+import Layout from "../../../layouts/Layout.astro";
+
+// Se obtiene el ID del Foro a partir de la URL entregada desde el Indice
+const { id } = Astro.params;
+
+// Funciones para formatear la fecha y hora
+const formatDate = (isoString: string | number | Date) => {
+  const date = new Date(isoString);
+  return date.toLocaleDateString("es-ES", { day: "numeric", month: "long" });
+};
+
+const formatTime = (isoString: string | number | Date) => {
+  const date = new Date(isoString);
+  return date.toLocaleTimeString("es-ES", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
+
+// Endpoint para Información de un Foro en específico
+const response = await fetch(`http://localhost:4321/api/forums/${id}`);
+const forumData = await response.json();
+
+// Endpoint para Listado de Temas sin Filtro
+const threadList = await fetch(
+  `http://localhost:4321/api/threads/forum-${id}/threads`
+);
+const threads = await threadList.json();
+
+// Endpoint para Listado de Temas Importantes
+const threadRelevanceList = await fetch(
+  `http://localhost:4321/api/threads/forum-${id}/relevant-threads`
+);
+const relevanceThreads = await threadRelevanceList.json();
+---
+
+<Layout title={forumData.name}>
+  <div class="bg-primary text-center py-3 flex flex-col items-end space-y-3">
+    <!-- Titulo & Descripción del Foro -->
+    <div class="w-full">
+      <div
+        class="flex flex-row bg-primary uppercase text-3xl font-bold text-center space-x-3 items-center"
+      >
+        <div class="w-full h-1 bg-accent"></div>
+        <span class="block w-full">{forumData.name} <br /></span>
+        <div class="w-full h-1 bg-accent"></div>
+      </div>
+      <span class="italic font-light">{forumData.description}</span>
+    </div>
+    <!-- Botones -->
+    <div class="w-full flex flex-row justify-between px-3 h-7">
+      <Pagination />
+      <StandardBtn backgroundColor="accent" inputText="Nuevo Tema" />
+    </div>
+  </div>
+
+  <!-- Fila Principal para Temas Importantes -->
+  <div class="px-2 py-1 bg-accent font-semibold">
+    <span>Temas Importantes</span>
+  </div>
+  <div class="flex flex-row bg-tertiary px-2 py-1">
+    <div class="w-1/2">
+      <span class="">Tema / Autor</span>
+    </div>
+    <div class="w-1/2 flex flex-row">
+      <div class="flex flex-row w-1/5 text-center justify-center items-center">
+        <i class="fa-solid fa-message"></i>
+      </div>
+      <span class="block w-1/5 text-center"
+        ><i class="fa-solid fa-eye"></i></span
+      >
+      <span class="block w-2/5 text-center">Último Mensaje</span>
+      <span class="block w-1/5 text-center">Seleccionador</span>
+    </div>
+  </div>
+
+  <ul>
+    {
+      relevanceThreads.map(
+        (thread: {
+          id: Number;
+          title: String;
+          author: String;
+          post_count: number;
+          view_count: number;
+          date: Date;
+          edit_author: String;
+          threadType: string;
+          slug: string;
+        }) => (
+          <div class="px-2 py-2 bg-secondary flex flex-row border-b-2 border-primary border-opacity-50">
+            <div class="flex flex-row w-1/2 space-x-1">
+              <div class="w-1/6 flex justify-center items-center text-3xl text-complementary">
+                {thread.threadType === "guide" ? (
+                  <i class="fa-solid fa-book" />
+                ) : (
+                  <i class="fa-solid fa-file" />
+                )}
+              </div>
+              <div class="flex flex-col w-5/6">
+                <a href={`/thread/${thread.id}/${thread.slug}`}>
+                  <span>{thread.title}</span>
+                </a>
+                <span class="font-semibold">{thread.author}</span>
+              </div>
+            </div>
+            <div class="w-1/2 flex flex-row justify-between text-center">
+              <div class="w-1/5 h-full flex justify-center items-center">
+                <span>{thread.post_count}</span>
+              </div>
+              <div class="w-1/5 flex justify-center items-center">
+                <span>{thread.view_count}</span>
+              </div>
+              <div class="w-2/5 text-center flex flex-col">
+                <span class="font-extralight">{`${formatDate(thread.date)} a las ${formatTime(thread.date)}`}</span>
+                <p>
+                  Por:{" "}
+                  <span class="font-bold">
+                    {thread.edit_author || thread.author}
+                  </span>
+                </p>
+              </div>
+              <div class="w-1/5 flex justify-center items-center">
+                <input type="checkbox" />
+              </div>
+            </div>
+          </div>
+        )
+      )
+    }
+  </ul>
+
+  <!-- Separador Temas Regulares -->
+  <div class="px-2 py-1 bg-accent font-semibold">
+    <span>Temas Regulares</span>
+  </div>
+
+  <ul>
+    {
+      threads.map(
+        (thread: {
+          id: number;
+          title: unknown;
+          author: unknown;
+          postCount: unknown;
+          viewCount: unknown;
+          date: any;
+          edit_author: any;
+        }) => (
+          <div class="px-2 py-2 bg-secondary flex flex-row border-b-2 border-tertiary">
+            <div class="flex flex-row w-1/2 space-x-1">
+              <div class="w-1/6 flex justify-center items-center">icono</div>
+              <div class="flex flex-col w-5/6">
+                <a href={`/show/thread-${thread.id}/threadview`}>
+                  <span>{thread.title}</span>
+                </a>
+                <span class="font-semibold">{thread.author}</span>
+              </div>
+            </div>
+            <div class="w-1/2 flex flex-row justify-between text-center">
+              <div class="w-1/5">
+                <span>{thread.postCount}</span>
+              </div>
+              <div class="w-1/5">
+                <span>{thread.viewCount}</span>
+              </div>
+              <div class="w-2/5 text-center flex flex-col">
+                <span class="font-extralight">{`${formatDate(thread.date)} a las ${formatTime(thread.date)}`}</span>
+                <p>
+                  Por:{" "}
+                  <span class="font-bold">
+                    {thread.edit_author || thread.author}
+                  </span>
+                </p>
+              </div>
+              <div class="w-1/5 flex justify-center items-center">
+                <input type="checkbox" />
+              </div>
+            </div>
+          </div>
+        )
+      )
+    }
+  </ul>
+</Layout>

@@ -1,0 +1,22 @@
+---
+const pageCount = [1, 2, 3, 4, 5, 6];
+---
+
+<!-- Contenedor Padre -->
+<div class="flex flex-row space-x-1">
+  <button
+    class="bg-accent block px-3 rounded-md hover:bg-tertiary transition-colors ease-in-out"
+    >Anterior</button
+  >
+  {
+    pageCount.map((number) => (
+      <button class="bg-accent rounded-md px-2 hover:bg-tertiary transition-colors ease-in-out">
+        {number}
+      </button>
+    ))
+  }
+  <button
+    class="bg-accent rounded-md px-5 hover:bg-tertiary transition-colors ease-in-out"
+    >Siguiente</button
+  >
+</div>

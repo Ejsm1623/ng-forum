@@ -1,0 +1,67 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import StandardBtn from "../../../components/StandardBtn.astro";
+import Post from "../../../components/Post/Post.astro";
+
+// Se obtiene el ID del Foro a partir de la URL entregada desde el Indice
+const { id } = Astro.params;
+
+// Fetch de API para obtener información del Tema actual
+const threadData = await fetch(`http://localhost:4321/api/threads/${id}`);
+const thread = await threadData.json();
+
+// Fetch para obtener los posts del tema
+const postsData = await fetch(
+  `http://localhost:4321/api/posts/thread-${id}/posts`
+);
+const posts = await postsData.json();
+
+type AuthorData = {
+  username: string;
+  faction: string;
+  rank: string;
+  avatarUrl: string | undefined;
+};
+
+type Post = {
+  content: string;
+  authorData: AuthorData;
+  creationDate: string;
+  creationTime: string;
+  lastEdit: string;
+};
+
+---
+
+<Layout title={thread.title}>
+  <div class="p-3 bg-primary">
+    <!-- Encabezado del Tema -->
+    <div class="flex flex-row w-full justify-between p-3">
+      <div class="flex flex-col items-left">
+        <span class="uppercase text-4xl font-bold">{thread.title}</span>
+        <span class="text-2xl font-thin lowercase">{thread.subtitle}</span>
+      </div>
+      <div class="my-auto space-x-3 text-xl">
+        <StandardBtn inputText="Responder" backgroundColor="accent" />
+        <StandardBtn inputText="Nuevo Tema" backgroundColor="complementary" />
+      </div>
+    </div>
+    <!-- Contenedor Padre del Post -->
+    <div class="bg-secondary p-5 space-y-4">
+      <!-- Posts -->
+      {
+        posts.map((post: {
+          content: Text; created_at: Date; users: { user_name: String; village: String; level: Number; }; 
+}) => (
+          <Post
+          name={post.users.user_name}
+          village={post.users.village}
+          level={post.users.level}
+          content={post.content}
+          date={post.created_at}
+          />
+        ))
+      }
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,54 @@
+---
+import Avatar from "./Avatar.astro";
+const { name, avatar, level, village, faction, role_points, content, date} = Astro.props;
+
+---
+
+<div class="flex flex-col">
+  <!-- Cabecera: Información de Usuario -->
+  <div
+    class={`h-28 rounded-lg rounded-b-none px-5 flex flex-row bg-${village}`}
+  >
+    <div class="flex flex-row justify-between items-center w-full">
+      <span class="text-5xl uppercase font-light"
+        >{name}</span>
+        <span class="text-5xl font-bold">Lv.{level}</span>
+    </div>
+  </div>
+  <!-- Contenedor del Post -->
+  <div
+    class="bg-primary text-primary flex flex-row p-3 space-x-3 overflow-hidden rounded-b-lg"
+  >
+    <!-- Avatar -->
+    <Avatar
+      userAvatar={avatar}
+      userName={name}
+    />
+    <!-- Contenedor del Contenido de Post -->
+    <div class="flex flex-col w-full space-y-2">
+      <!-- Utilidades del Post -->
+      <div class="w-full flex flex-row space-x-3">
+        <!-- Enlace del Post -->
+        <div class="h-11 bg-tertiary w-full text-xl font-bold flex justify-center items-center"><a href="/thread/${id}">Enlace al Post</a></div>
+        <!-- Ultima edición -->
+        <div class="h-11 w-full bg-complementary flex justify-center items-center font-semibold text-xl">
+          <span class="text-primary">{date}</span>
+        </div>
+      </div>
+      <!-- Contenido del Post -->
+      <div
+        class="w-full h-full p-2 text-justify leading-relaxed font-extralight text-base"
+      >
+        <p class="text-text" id="post-content">
+          {content}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    #post-content {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
