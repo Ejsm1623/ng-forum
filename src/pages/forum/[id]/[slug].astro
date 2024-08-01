@@ -21,18 +21,18 @@ const formatTime = (isoString: string | number | Date) => {
 };
 
 // Endpoint para Información de un Foro en específico
-const response = await fetch(`http://localhost:4321/api/forums/${id}`);
+const response = await fetch(`${Astro.url}/api/forums/${id}`);
 const forumData = await response.json();
 
 // Endpoint para Listado de Temas sin Filtro
 const threadList = await fetch(
-  `http://localhost:4321/api/threads/forum-${id}/threads`
+  `${Astro.url}/api/threads/forum-${id}/threads`
 );
 const threads = await threadList.json();
 
 // Endpoint para Listado de Temas Importantes
 const threadRelevanceList = await fetch(
-  `http://localhost:4321/api/threads/forum-${id}/relevant-threads`
+  `${Astro.url}/api/threads/forum-${id}/relevant-threads`
 );
 const relevanceThreads = await threadRelevanceList.json();
 ---
