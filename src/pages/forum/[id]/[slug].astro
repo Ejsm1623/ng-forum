@@ -20,19 +20,20 @@ const formatTime = (isoString: string | number | Date) => {
   });
 };
 
+//Construimos la variable para almacenar la URL
+const actualUrl = Astro.url.origin;
+
 // Endpoint para Información de un Foro en específico
-const response = await fetch(`${import.meta.env.API_URL}/api/forums/${id}`);
+const response = await fetch(`${actualUrl}/api/forums/${id}`);
 const forumData = await response.json();
 
 // Endpoint para Listado de Temas sin Filtro
-const threadList = await fetch(
-  `${import.meta.env.API_URL}/api/threads/forum-${id}/threads`
-);
+const threadList = await fetch(`${actualUrl}/api/threads/forum-${id}/threads`);
 const threads = await threadList.json();
 
 // Endpoint para Listado de Temas Importantes
 const threadRelevanceList = await fetch(
-  `${import.meta.env.API_URL}/api/threads/forum-${id}/relevant-threads`
+  `${actualUrl}/api/threads/forum-${id}/relevant-threads`
 );
 const relevanceThreads = await threadRelevanceList.json();
 ---
@@ -63,7 +64,7 @@ const relevanceThreads = await threadRelevanceList.json();
   </div>
   <div class="flex flex-row bg-tertiary px-2 py-1">
     <div class="w-1/2">
-      <span class="">Tema / Autor</span>
+      <span>Tema / Autor</span>
     </div>
     <div class="w-1/2 flex flex-row">
       <div class="flex flex-row w-1/5 text-center justify-center items-center">
@@ -81,17 +82,17 @@ const relevanceThreads = await threadRelevanceList.json();
     {
       relevanceThreads.map(
         (thread: {
-          id: Number;
-          title: String;
-          author: String;
+          id: any;
+          threadType: string;
+          slug: string;
+          title: string;
+          author: string;
           post_count: number;
           view_count: number;
           date: Date;
-          edit_author: String;
-          threadType: string;
-          slug: string;
+          edit_author: string;
         }) => (
-          <div class="px-2 py-2 bg-secondary flex flex-row border-b-2 border-primary border-opacity-50">
+          <li class="px-2 py-2 bg-secondary flex flex-row border-b-2 border-primary border-opacity-50">
             <div class="flex flex-row w-1/2 space-x-1">
               <div class="w-1/6 flex justify-center items-center text-3xl text-complementary">
                 {thread.threadType === "guide" ? (
@@ -127,7 +128,7 @@ const relevanceThreads = await threadRelevanceList.json();
                 <input type="checkbox" />
               </div>
             </div>
-          </div>
+          </li>
         )
       )
     }
@@ -142,7 +143,7 @@ const relevanceThreads = await threadRelevanceList.json();
     {
       threads.map(
         (thread: {
-          id: number;
+          id: any;
           title: unknown;
           author: unknown;
           postCount: unknown;
@@ -150,7 +151,7 @@ const relevanceThreads = await threadRelevanceList.json();
           date: any;
           edit_author: any;
         }) => (
-          <div class="px-2 py-2 bg-secondary flex flex-row border-b-2 border-tertiary">
+          <li class="px-2 py-2 bg-secondary flex flex-row border-b-2 border-tertiary">
             <div class="flex flex-row w-1/2 space-x-1">
               <div class="w-1/6 flex justify-center items-center">icono</div>
               <div class="flex flex-col w-5/6">
@@ -180,7 +181,7 @@ const relevanceThreads = await threadRelevanceList.json();
                 <input type="checkbox" />
               </div>
             </div>
-          </div>
+          </li>
         )
       )
     }

@@ -7,12 +7,12 @@ import Post from "../../../components/Post/Post.astro";
 const { id } = Astro.params;
 
 // Fetch de API para obtener información del Tema actual
-const threadData = await fetch(`${Astro.url}/api/threads/${id}`);
+const threadData = await fetch(`${Astro.url.origin}/api/threads/${id}`);
 const thread = await threadData.json();
 
 // Fetch para obtener los posts del tema
 const postsData = await fetch(
-  `${Astro.url}/api/posts/thread-${id}/posts`
+  `${Astro.url.origin}/api/posts/thread-${id}/posts`
 );
 const posts = await postsData.json();
 

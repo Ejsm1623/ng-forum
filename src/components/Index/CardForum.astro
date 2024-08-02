@@ -1,10 +1,12 @@
 ---
-const { title, quickAcces1, quickAcces2 } = Astro.props;
+const { title, quickAcces1, quickAcces2, forumImage } = Astro.props;
+import Image from "astro/components/Image.astro";
 ---
 
 <div class="w-2/6 h-[400px] flex flex-col">
   <div class="h-1/2 w-full bg-slate-200">
-    <!-- <Image src={forumImage} alt="" /> -->
+    
+    <Image src={forumImage} alt={"Card Forum Portrait"} />
   </div>
   <div class="bg-black p-2 flex flex-col justify-start space-y-2 h-full">
     <!-- Titulo -->

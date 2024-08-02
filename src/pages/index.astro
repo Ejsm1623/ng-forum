@@ -5,6 +5,21 @@ import WorldForums from "../components/Index/WorldForum/WorldForum.astro";
 import SidedForum from "../components/Index/SidedForum.astro";
 import SquaredForum from "../components/Index/SquaredForum.astro";
 import Layout from "../layouts/Layout.astro";
+
+//Importación de imagenes decorativas
+import Image from "astro/components/Image.astro";
+import infoDecorative from "/public/decoratives/info-decorative.png";
+import statsDecorative from "/public/decoratives/stats-decorative.png";
+
+//Importación de imagenes para Foros
+import forumLibrary from "/public/forums/library.png";
+import forumMaps from "/public/forums/maps.png";
+import forumCommerce from "/public/forums/commerce.png";
+
+//Fetching de datos globales
+const response = await fetch(`${Astro.url.origin}/api/count`);
+const countData = await response.json();
+console.log(countData);
 ---
 
 <!-- Indice del Foro -->
@@ -12,7 +27,12 @@ import Layout from "../layouts/Layout.astro";
   <main>
     <section>
       <!-- Categoria 1: Información -->
-      <Category id="01" title="Información" category="information" />
+      <Category
+        id="01"
+        title="Información"
+        category="information"
+        catImage="/categories/catInfo.png"
+      />
       <!-- Contenedor Padre -->
       <div class="bg-primary p-3 w-full h-[400px]">
         <!-- Contenedor para aplicar fondo -->
@@ -21,9 +41,9 @@ import Layout from "../layouts/Layout.astro";
           <div class="w-3/5">
             <SquaredForum
               title="Guías de Sistema"
-              subTitle="Recorre las guías del foro. Desde lo más básico a las avanzadas."
-              acces1="Guías Bélicas"
-              acces2="Otras Guías"
+              subTitle="Encuentra las guías de sistemas básicos & avanzados."
+              acces1="Guías Básicas"
+              acces2="Guías Avanzadas"
               forumUrl="/forum/4/guias-&-sistemas"
               forumImage={"/forums/guides.png"}
             />
@@ -33,37 +53,45 @@ import Layout from "../layouts/Layout.astro";
             <SidedForum
               title="Ambientación"
               description="¡Bienvenido! Lee las últimas novedades en cuanto a ambientación y Lore. Ubicate en la historia y conoce los detalles antes de comenzar."
-            />
+              forumUrl="/forum/2/ambientacion-&-lore"
+              />
             <SidedForum
               title="Soporte"
               description="Planteas las dudas, sugerencias o quejas que mantengas. La administración o incluso la comunidad, respodnerá cuanto antes a ellas."
-            />
+              forumUrl="/forum/3/soporte"
+              />
             <SidedForum
-              title="Anuncios & Eventos"
-              description="Mantente al día con las últimas novedades del foro."
-            />
+              title="Anuncios"
+              description="Mantente al día con las últimas novedades del foro. Aquí se anuncian Parches del Sistema, Cambios Generales y hasta Eventos o Tramas."
+              forumUrl="/forum/1/anuncios-e-informacion"
+              />
           </div>
           <!-- Imagen Decorativa de la Sección -->
-          <!-- <Image
-		src={sampleImage}
-		alt="Imagen Decorativa"
-		class="w-1/5"
-		loading="lazy"
-	  /> -->
+          <Image
+            src={infoDecorative}
+            alt="Imagen Decorativa"
+            class="w-1/5"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
     <section>
       <!-- Categoria 2: Personaje -->
-      <Category id="02" title="Zona de PJ" category="character" />
+      <Category
+        id="02"
+        title="Zona de PJ"
+        category="character"
+        catImage="/categories/catCharacter.png"
+      />
       <div class="bg-primary p-3 w-full h-[400px]">
         <div class="bg-secondary p-3 flex flex-row space-x-3 h-full">
           <div class="w-2/5">
             <SquaredForum
               title="Creaciones"
-              subTitle="Todo lo necesario en cuanto a las habilidades de tu personaje."
-              acces1="Catalogo de Técnicas"
-              acces2="Armas"
+              subTitle="Crea lo necesario en cuanto a las habilidades de tu personaje."
+              acces1="Creación de técnicas"
+              acces2="Creación de armas"
               forumImage={"/forums/creations.png"}
               forumUrl="/forum/2/perfiles-de-creaciones"
             />
@@ -72,11 +100,29 @@ import Layout from "../layouts/Layout.astro";
             <div
               class="w-full bg-accent h-full px-3 flex flex-col justify-evenly text-primary rounded-sm"
             >
-              <span
-                class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary"
+              <a href="/#"
+                ><span
+                  class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary"
+                > Busquedas
+                </span></a
               >
-                <a href="/#"></a>
-              </span>
+              <a href="/#"
+                ><span
+                  class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary"
+                > Cronología
+                </span></a
+              >
+              <a href="/#"
+                ><span
+                  class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary"
+                > Organizaciones
+                </span></a
+              ><a href="/#"
+              ><span
+                class="block bg-complementary rounded-sm text-center p-1 font-semibold hover:bg-tertiary"
+              > Relaciones
+              </span></a
+            >
             </div>
           </div>
           <div class="w-2/5">
@@ -84,43 +130,53 @@ import Layout from "../layouts/Layout.astro";
               title="Registros"
               subTitle="¿Buscando acción? Solicita, Crea o unete a una misión."
               forumUrl="/forum/3/registros-&-solicitudes"
-              acces1="Tablón de Misiones"
-              acces2="Solicitud"
-              forumImage={"/forum/requests.png"}
-              />
+              acces1="Misiones"
+              acces2="Registro de Físico"
+              forumImage={"/forums/requests.png"}
+            />
           </div>
         </div>
       </div>
     </section>
     <section>
       <!-- Categoria 3: Desarrollo -->
-      <Category id="03" title="Desarrollo" category="development" />
+      <Category
+        id="03"
+        title="Desarrollo"
+        category="development"
+        catImage="/categories/catDevelop.png"
+      />
       <div class="bg-primary p-3">
         <div class="bg-secondary p-3 flex flex-row space-x-3">
           <CardForum
             title="Biblioteca de Información"
             quickAcces1="Tutoriales"
             quickAcces2="Técnicas"
-            forum="library"
+            forumImage={forumLibrary}
           />
           <CardForum
             title="Comercio"
             quickAcces1="Tienda"
             quickAcces2="Banco Internacional"
-            forum="commerce"
+            forumImage={forumCommerce}
           />
           <CardForum
             title="Mapa del Mundo"
             quickAcces1="Mejoras de Aldea"
             quickAcces2="Bestiario"
-            forum="map"
+            forumImage={forumMaps}
           />
         </div>
       </div>
     </section>
     <section>
       <!-- Sección de Mundo -->
-      <Category id="04" title="Continente" category="world" />
+      <Category
+        id="04"
+        title="Continente"
+        category="world"
+        catImage="/categories/catWorld.jpg"
+      />
       <WorldForums />
     </section>
     <!-- <section>
@@ -159,11 +215,11 @@ import Layout from "../layouts/Layout.astro";
                 <div class="bg-primary h-full p-4">Hola</div>
               </div>
               <div class="h-1/2 overflow-hidden bg-black">
-                <!-- <Image
-					  src={sampleImage}
-					  alt={"Decorativa de Conectados"}
-					  loading={"lazy"}
-					/> -->
+                <Image
+                  src={statsDecorative}
+                  alt={"Decorativa de Conectados"}
+                  loading={"lazy"}
+                />
               </div>
             </div>
           </div>
@@ -183,14 +239,15 @@ import Layout from "../layouts/Layout.astro";
             <div class="w-full h-24 bg-kumo"></div>
           </div>
           <div class="flex flex-row space-x-3">
-            <span class="block bg-primary text-center w-full rounded-md p-3"
-              >100 Mensajes</span
+            <span
+              class="block bg-accent text-center w-full rounded-md p-3 font-medium uppercase"
+              >Estadísticas del Foro</span
             >
             <span class="block bg-primary text-center w-full rounded-md p-3"
-              >100 Mensajes</span
+              >Posts:{`\n\n${countData.postsCount}`}</span
             >
             <span class="block bg-primary text-center w-full rounded-md p-3"
-              >100 Mensajes</span
+              >Temas:{`\n\n${countData.threadsCount}`}</span
             >
           </div>
         </div>

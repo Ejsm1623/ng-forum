@@ -1,5 +1,6 @@
 ---
-const { id, title } = Astro.props;
+const { id, title, catImage } = Astro.props;
+import Image from "astro/components/Image.astro";
 ---
 
 <div
@@ -7,14 +8,12 @@ const { id, title } = Astro.props;
   id="category_header"
 >
   <div class="w-3/5 h-full relative z-0">
-    <div class="h-full w-full absolute z-50 overflow-hidden" id="category_image">
-      <!-- <Image 
-        src={categoryImage} 
-        alt="Cabecera de Categoria" 
-        class="h-full w-full object-cover"
-        loading="eager"
-      /> -->
-    </div>
+    <div
+      class="h-full w-full absolute z-50 overflow-hidden object"
+      id="category_image"
+    >
+      <img src={catImage} alt="" class="">
+  </div>
     <div
       class="bg-complementary h-full w-full absolute left-2 z-40"
       id="first-border"

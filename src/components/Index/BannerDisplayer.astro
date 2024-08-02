@@ -1,6 +1,7 @@
 ---
 import Image from "astro/components/Image.astro";
 import BannerImage from "/public/banners/sample-banner.png";
+import Tooltip from "../Tooltip.astro";
 ---
 
 <!-- Contenedor Padre de Banner -->
@@ -15,12 +16,34 @@ import BannerImage from "/public/banners/sample-banner.png";
   >
   <!-- Accesos Rapidos -->
   <div
-    class="bg-accent w-1/2 h-11 absolute bottom-0 left-1/4 flex flex-row rounded-lg rounded-b-none"
+    class="bg-accent w-1/2 h-11 absolute bottom-0 left-1/4 flex flex-row rounded-lg rounded-b-none text-2xl"
   >
     <ul class="flex h-full w-full flex-row justify-evenly items-center">
-      <li>Cerrar sesión</li>
-      <li>Petición Administrativa</li>
-      <li>Top Rolers</li>
+      <li>
+        <Tooltip text="Cerrar Sesión">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </Tooltip>
+      </li>
+      <li>
+        <Tooltip text="Petición Administrativa">
+          <i class="fa-solid fa-ticket"></i>
+        </Tooltip>
+      </li>
+      <li>
+        <Tooltip text="Top Rolers">
+          <i class="fa-solid fa-ranking-star"></i>
+        </Tooltip>
+      </li>
+      <li>
+        <Tooltip text="Ficha de Personaje">
+          <i class="fa-solid fa-address-card"></i>
+        </Tooltip>
+      </li>
+      <li>
+        <Tooltip text="Recompensa Diaria">
+          <i class="fa-solid fa-award"></i>
+        </Tooltip>
+      </li>
     </ul>
   </div>
 </div>
